@@ -21,9 +21,6 @@ function App() {
   return (
     <>
       <ProductList product={product} onClick={handleItemClick} />
-      {
-        "може здатись що все працює після кліку, але якщо явно задати currentId то стане видно що воно завантажується разом з сторінкою,просто чекає id який показати"
-      }
       <ProductPrices product={product} id={currentId} />
     </>
   );
