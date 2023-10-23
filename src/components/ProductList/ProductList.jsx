@@ -2,15 +2,9 @@ export default function ProductList(props) {
   const { product, onClick } = props;
   return (
     <>
-      <ul
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          gap: "10px",
-          flexWrap: "wrap",
-        }}>
+      <ul className="product-list">
         {product.map((el, id) => (
-          <li key={id} onClick={() => onClick(el.id)}>
+          <li className="product-item" key={id} onClick={() => onClick(el.id)}>
             {el.id}:{el.price}
           </li>
         ))}

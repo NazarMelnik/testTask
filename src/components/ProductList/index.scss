@@ -1,0 +1,11 @@
+.product-list {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-basis: 50px;
+  flex-wrap: wrap;
+}
+.product-item {
+  padding: 10px;
+  border: 1px dashed #333333;
+}

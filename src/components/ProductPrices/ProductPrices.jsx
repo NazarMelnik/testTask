@@ -17,15 +17,11 @@ export default function ProductPrices(props) {
   // і або показуємо наш масив якщо ми вже знаємо id яке нам треба, або взагалі нічого не показуємо
   if (prices[id]) {
     return (
-      <ul
-        style={{
-          display: "flex",
-          justifyContent: "flex-start",
-          gap: "15px",
-          flexWrap: "wrap",
-        }}>
+      <ul className="choosen-id-list">
         {prices[id].map((price, index) => (
-          <li key={index}>{price}</li>
+          <li className="choosen-id-item" key={index}>
+            {price}
+          </li>
         ))}
       </ul>
     );
