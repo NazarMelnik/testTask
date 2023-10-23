@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import _ from "lodash";
-export default function ProductPrices(props) {
-  const { product, id } = props;
+export default function ProductPrices({ product, id }) {
   const [prices, setPrices] = useState({});
 
   useEffect(() => {
