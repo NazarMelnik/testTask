@@ -1,22 +1,17 @@
 import { useEffect, useState } from "react";
-
+import _ from "lodash";
 export default function ProductPrices(props) {
   const { product, id } = props;
   const [prices, setPrices] = useState({});
-  // проходимось по кожному елементу після отримання данних з запиту, потім створюємо пари ід : [масив цін], якщо елемент з таким id існує то ми просто додаємо ще одну ціну , а якщо такого id ще немає у нашому об'єкті то створюється ключ з данним id
+
   useEffect(() => {
     if (product) {
-      product.forEach((item) => {
-        setPrices((prevPrices) => {
-          const newPrices = { ...prevPrices };
-          if (!newPrices[item.id]) {
-            newPrices[item.id] = [item.price];
-          } else {
-            newPrices[item.id].push(item.price);
-          }
-          return newPrices;
-        });
+      const groupedPrices = _.groupBy(product, "id");
+      const pricesObject = {};
+      Object.keys(groupedPrices).forEach((key) => {
+        pricesObject[key] = groupedPrices[key].map((item) => item.price);
       });
+      setPrices(pricesObject);
     }
   }, [product]);
   // і або показуємо наш масив якщо ми вже знаємо id яке нам треба, або взагалі нічого не показуємо
