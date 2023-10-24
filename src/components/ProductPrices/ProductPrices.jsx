@@ -1,19 +1,22 @@
 import { useEffect, useState } from "react";
-import _ from "lodash";
+
 export default function ProductPrices({ product, id }) {
   const [prices, setPrices] = useState({});
 
   useEffect(() => {
     if (product) {
-      const groupedPrices = _.groupBy(product, "id");
-      const pricesObject = {};
-      Object.keys(groupedPrices).forEach((key) => {
-        pricesObject[key] = groupedPrices[key].map((item) => item.price);
-      });
+      const pricesObject = product.reduce((accumulator, item) => {
+        const itemId = item.id;
+        if (!accumulator[itemId]) {
+          accumulator[itemId] = [];
+        }
+        accumulator[itemId].push(item.price);
+        return accumulator;
+      }, {});
       setPrices(pricesObject);
     }
   }, [product]);
-  // і або показуємо наш масив якщо ми вже знаємо id яке нам треба, або взагалі нічого не показуємо
+
   if (prices[id]) {
     return (
       <ul className="choosen-id-list">
